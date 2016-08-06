@@ -1,16 +1,19 @@
 // Type definitions for Paper.js v0.9.22
 // Project: http://paperjs.org/
 
-declare module paper {
+declare module "paper" {
+    export = paper;
+}
 
+declare module paper {
     /**
      * The version of Paper.js, as a string.
      */
     export var version: string;
 
     /**
-    * Gives access to paper's configurable settings.
-    */
+     * Gives access to paper's configurable settings.
+     */
     export var settings: {
 
         applyMatrix: boolean;
@@ -40,7 +43,7 @@ declare module paper {
      */
     export var tool: Tool;
 
-    /** 
+    /**
      * The list of available tools.
      */
     export var tools: Tool[];
@@ -48,7 +51,7 @@ declare module paper {
     /**
      * Injects the paper scope into any other given scope. Can be used for examle to inject the currently active PaperScope into the window's global scope, to emulate PaperScript-style globally accessible Paper classes and objects
      * Please note: Using this method may override native constructors (e.g. Path, RGBColor). This may cause problems when using Paper.js in conjunction with other libraries that rely on these constructors. Keep the library scoped if you encounter issues caused by this.
-     * @param scope - 
+     * @param scope -
      */
     export function install(scope: any): void;
 
@@ -62,7 +65,7 @@ declare module paper {
      * Activates this PaperScope, so all newly created items will be placed in its active project.
      */
     export function activate(): void;
-        
+
     /**
      * An affine transform performs a linear mapping from 2D coordinates to other 2D coordinates that preserves the "straightness" and "parallelness" of lines.
      * Such a coordinate transformation can be represented by a 3 row by 3 column matrix with an implied last row of [ 0 0 1 ]. This matrix transforms source coordinates (x,y) into destination coordinates (x',y') by considering them to be a column vector and multiplying the coordinate vector by the matrix according to the following process:
@@ -304,14 +307,14 @@ declare module paper {
          */
         decompose(): any;
 
-        /** 
+        /**
          * Creates the inversion of the transformation of the matrix and returns it as a new insteance. If the matrix is not invertible (in which case isSingular() returns true), null is returned.
          */
         inverted(): Matrix;
 
         /**
          * Applies this matrix to the specified Canvas Context.
-         * @param ctx - 
+         * @param ctx -
          */
         applyToContext(ctx: CanvasRenderingContext2D): void;
 
@@ -371,12 +374,12 @@ declare module paper {
          */
         constructor(point: Point);
 
-        /** 
+        /**
          * The x coordinate of the point
          */
         x: number;
 
-        /** 
+        /**
          * The y coordinate of the point
          */
         y: number;
@@ -426,7 +429,9 @@ declare module paper {
          */
         toString(): string;
 
-        /** 
+        add(Point: Point): Point;
+
+        /**
          * Returns the smaller angle between two vectors. The angle is unsigned, no information about rotational direction is given.
          * @param point -
          */
@@ -439,15 +444,15 @@ declare module paper {
         getAngleInRadians(point: Point): number;
 
         /**
-         * Returns the angle between two vectors. The angle is directional and signed, giving information about the rotational direction. 
+         * Returns the angle between two vectors. The angle is directional and signed, giving information about the rotational direction.
          * Read more about angle units and orientation in the description of the angle property.
-         * @param point - 
+         * @param point -
          */
         getDirectedAngle(point: Point): number;
 
         /**
          * Returns the distance between the point and another point.
-         * @param point - 
+         * @param point -
          * @param squared [optional] - Controls whether the distance should remain squared, or its square root should be calculated. default: false
          */
         getDistance(point: Point, squared?: boolean): number;
@@ -504,7 +509,7 @@ declare module paper {
          */
         isZero(): boolean;
 
-        /** 
+        /**
          * Checks if this point has an undefined value for at least one of its coordinates.
          */
         isNan(): boolean;
@@ -515,16 +520,16 @@ declare module paper {
          */
         dot(point: Point): number;
 
-        /** 
+        /**
          * Returns the cross product of the point and another point.
-         * @param point - 
+         * @param point -
          */
         cross(point: Point): number;
 
-        /** 
+        /**
          * Returns the projection of the point on another point.
          * Both points are interpreted as vectors.
-         * @param point - 
+         * @param point -
          */
         project(point: Point): Point;
 
@@ -543,7 +548,7 @@ declare module paper {
          */
         floor(): Point;
 
-        /** 
+        /**
          * Returns a new point with the absolute values of the specified x and y values. The object itself is not modified!
          */
         abs(): Point;
@@ -717,7 +722,7 @@ declare module paper {
          */
         isEmpty(): boolean;
 
-        /** 
+        /**
          * Tests if the specified point is inside the boundary of the rectangle.
          * @param point - the specified point
          */
@@ -750,7 +755,7 @@ declare module paper {
         /**
          * Adds a point to this rectangle. The resulting rectangle is the smallest rectangle that contains both the original rectangle and the specified point.
          * After adding a point, a call to contains(point) with the added point as an argument does not necessarily return true.
-         * The rectangle.contains(point) method does not return true for points on the right or bottom edges of a rectangle. Therefore, if the added point falls on the left or bottom edge of the enlarged rectangle, rectangle.contains(point) returns false for that point. 
+         * The rectangle.contains(point) method does not return true for points on the right or bottom edges of a rectangle. Therefore, if the added point falls on the left or bottom edge of the enlarged rectangle, rectangle.contains(point) returns false for that point.
          * @param point - the point to add to the rectangle
          */
         include(point: Point): Point;
@@ -901,7 +906,7 @@ declare module paper {
         count: number;
 
         /**
-         * the total amount of time passed since the first 
+         * the total amount of time passed since the first
          */
         time: number;
 
@@ -925,8 +930,8 @@ declare module paper {
         version: string;
 
         /**
-        * Gives access to paper's configurable settings.
-        */
+         * Gives access to paper's configurable settings.
+         */
         settings: {
 
             applyMatrix: boolean;
@@ -956,7 +961,7 @@ declare module paper {
          */
         tool: Tool;
 
-        /** 
+        /**
          * The list of available tools.
          */
         tools: Tool[];
@@ -964,7 +969,7 @@ declare module paper {
         /**
          * Injects the paper scope into any other given scope. Can be used for examle to inject the currently active PaperScope into the window's global scope, to emulate PaperScript-style globally accessible Paper classes and objects
          * Please note: Using this method may override native constructors (e.g. Path, RGBColor). This may cause problems when using Paper.js in conjunction with other libraries that rely on these constructors. Keep the library scoped if you encounter issues caused by this.
-         * @param scope - 
+         * @param scope -
          */
         install(scope: any): void;
 
@@ -1123,7 +1128,7 @@ declare module paper {
          */
         view: View;
 
-        /** 
+        /**
          * The layer that this item is contained within.
          * Read Only.
          */
@@ -1156,7 +1161,7 @@ declare module paper {
          */
         nextSibling: Item;
 
-        /** 
+        /**
          * The previous item on the same level as this item.
          * Read Only.
          */
@@ -1280,7 +1285,7 @@ declare module paper {
          */
         clone(insert?: boolean): Item;
 
-        /** 
+        /**
          * When passed a project, copies the item to the project, or duplicates it within the same project. When passed an item, copies the item into the specified item.
          * @param item - the item or project to copy the item to
          */
@@ -1328,7 +1333,7 @@ declare module paper {
          * @param options.selected - only hit selected items.
          */
         hitTest(point: Point, options?: { tolerance?: number; class?: string; fill?: boolean; stroke?: boolean; segments?: boolean; curves?: boolean; handles?: boolean; ends?: boolean; bounds?: boolean; center?: boolean; guides?: boolean; selected?: boolean; }): HitResult;
-        
+
         /**
          * Checks whether the item matches the criteria described by the given object, by iterating over all of its properties and matching against their values through matches(name, compare).
          * See project.getItems(match) for a selection of illustrated examples.
@@ -1411,7 +1416,7 @@ declare module paper {
          */
         addChildren(items: Item[]): Item[];
 
-        /** 
+        /**
          * Inserts the specified items as children of this item at the specified index in its children list. You can use this function for groups, compound paths and layers.
          * @param index -
          * @param items - The items to be appended as children
@@ -1551,7 +1556,7 @@ declare module paper {
          */
         translate(delta: number): Point;
 
-        /** 
+        /**
          * Rotates the item by a given angle around the given point.
          * Angles are oriented clockwise and measured in degrees.
          * @param angle - the rotation angle
@@ -1584,7 +1589,7 @@ declare module paper {
         /**
          * Shears the item by the given values from its center point, or optionally by a supplied point.
          * @param hor - the horizontal shear factor
-         * @param ver - the vertical shear factor 
+         * @param ver - the vertical shear factor
          * @param center [optional] - default: item.position
          */
         shear(hor: number, ver: number, center?: Point): void;
@@ -1628,10 +1633,10 @@ declare module paper {
          */
         parentToLocal(point: Point): Point;
 
-        /** 
-        * Converts the specified point from the item's own local coordinate space to the parent's coordinate space.
-        * @param point - the point to be transformed
-        */
+        /**
+         * Converts the specified point from the item's own local coordinate space to the parent's coordinate space.
+         * @param point - the point to be transformed
+         */
         localToParent(point: Point): Point;
 
         /**
@@ -1805,7 +1810,7 @@ declare module paper {
         /**
          * Creates a circular shape item.
          * @param center - the center point of the circle
-         * @param radius - the radius of the circle 
+         * @param radius - the radius of the circle
          */
         static Circle(center: Point, radius: number): Shape;
 
@@ -1844,7 +1849,7 @@ declare module paper {
 
         /**
          * Creates an elliptical shape item.
-         * @param rectangle - the rectangle circumscribing the ellipse 
+         * @param rectangle - the rectangle circumscribing the ellipse
          */
         static Ellipse(rectangle: Rectangle): Shape;
 
@@ -1942,14 +1947,14 @@ declare module paper {
 
         /**
          * Draws an image on the raster.
-         * @param image - the image to draw 
+         * @param image - the image to draw
          * @param point - the offset of the image as a point in pixel coordinates
          */
         drawImage(image: HTMLImageElement | HTMLCanvasElement, point: Point): void;
 
         /**
          * Calculates the average color of the image within the given path, rectangle or point. This can be used for creating raster image effects.
-         * @param object - the path, rectangle or point to get the average image color from 
+         * @param object - the path, rectangle or point to get the average image color from
          */
         getAverageColor(object: Path | Rectangle | Point): Color;
 
@@ -1982,7 +1987,7 @@ declare module paper {
         setPixel(point: Point, color: Color): void;
 
         /**
-         * 
+         *
          * @param size
          */
         createImageData(size: Size): ImageData;
@@ -1994,7 +1999,7 @@ declare module paper {
         getImageData(rect: Rectangle): ImageData;
 
         /**
-         * 
+         *
          *
          * @param data
          * @param point
@@ -2099,7 +2104,7 @@ declare module paper {
 
         /**
          * Adds a cubic bezier curve to the path, defined by two handles and a to point.
-         * @param handle1 - The first control point handle for the curve   
+         * @param handle1 - The first control point handle for the curve
          * @param handle2 - The second control point handle for the curve
          * @param to - The end control point of the curve
          */
@@ -2142,7 +2147,7 @@ declare module paper {
 
         /**
          * If called on a CompoundPath, a new Path is created as a child and a point is added as its first segment relative to the position of the last segment of the current path.
-         * @param to - 
+         * @param to -
          */
         moveBy(to: Point): void;
 
@@ -2154,36 +2159,36 @@ declare module paper {
 
         /**
          *
-         * @param through -  
+         * @param through -
          * @param to -
          * @param parameter [optional] - default 0.5
          */
         curveBy(through: Point, to: Point, parameter?: number): void;
 
         /**
-         * 
-         * @param handle1 - 
-         * @param handle2 - 
+         *
+         * @param handle1 -
+         * @param handle2 -
          * @param to -
          */
         cublicCurveBy(handle1: Point, handle2: Point, to: Point): void;
 
         /**
-         * 
-         * @param handle - 
+         *
+         * @param handle -
          * @param to -
          */
         quadraticCurveBy(handle: Point, to: Point): void;
 
         /**
-         * 
+         *
          * @param through -
          * @param to -
          */
         arcBy(through: Point, to: Point): void;
 
         /**
-         * 
+         *
          * @param to -
          * @param clockwise [optional] - default: true
          */
@@ -2212,7 +2217,7 @@ declare module paper {
          * @param - the path to exclude the intersection of
          */
         exclude(path: PathItem): PathItem;
-        
+
         /**
          * Splits the geometry of this path along the geometry of the specified path returns the result as a new group item.
          * @param - the path to divide by
@@ -2251,7 +2256,7 @@ declare module paper {
          */
         static Circle(object: any): Path;
 
-        /** 
+        /**
          * Creates a rectangular path item, with optionally rounded corners.
          * @param rectangle - the rectangle object describing the geometry of the rectangular path to be created.
          * @param radius [optional] - the size of the rounded corners default: null
@@ -2261,7 +2266,7 @@ declare module paper {
         /**
          * Creates a rectangular path item from a point and a size object.
          * @param point - the rectangle's top-left corner.
-         * @param size - the rectangle's size. 
+         * @param size - the rectangle's size.
          */
         static Rectangle(point: Point, size: Size): Path;
 
@@ -2461,14 +2466,14 @@ declare module paper {
          * Returns an array containing the removed segments
          */
         removeSegments(): Segment[];
-     
+
         /**
          * Removes the segments from the specified from index to the to index from the path's segments array.
          * @param from - the beginning index, inclusive
          * @param to [optional = segments.length] - the ending index
          * Returns an array containing the removed segments
          */
-        removeSegments(from: number, to?: number): Segment[];   
+        removeSegments(from: number, to?: number): Segment[];
 
         /**
          * Converts the curves in a path to straight lines with an even distribution of points. The distance between the produced segments is as close as possible to the value specified by the maxDistance parameter.
@@ -2478,7 +2483,7 @@ declare module paper {
 
         /**
          * Smooths a path by simplifying it. The path.segments array is analyzed and replaced by a more optimal set of segments, reducing memory usage and speeding up drawing.
-         * @param tolerance [optional = 2.5] - 
+         * @param tolerance [optional = 2.5] -
          */
         simplify(tolerance?: number): void;
 
@@ -2538,31 +2543,31 @@ declare module paper {
         /**
          * Calculates the point on the path at the given offset. Returns the point at the given offset
          * @param offset - the offset on the path, where 0 is at the beginning of the path and path.length at the end.
-         * @param isParameter [optional=false] - 
+         * @param isParameter [optional=false] -
          */
         getPointAt(offset: number, isPatameter?: boolean): Point;
 
         /**
          * Calculates the tangent vector of the path at the given offset. Returns the tangent vector at the given offset
          * @param offset - the offset on the path, where 0 is at the beginning of the path and path.length at the end.
-         * @param isParameter [optional=false] - 
+         * @param isParameter [optional=false] -
          */
         getTangentAt(offset: number, isPatameter?: boolean): Point;
 
         /**
          * Calculates the normal vector of the path at the given offset. Returns the normal vector at the given offset
          * @param offset - the offset on the path, where 0 is at the beginning of the path and path.length at the end.
-         * @param isParameter [optional=false] - 
+         * @param isParameter [optional=false] -
          */
         getNormalAt(offset: number, isParameter?: boolean): Point;
 
         /**
          * Calculates the curvature of the path at the given offset. Curvatures indicate how sharply a path changes direction. A straight line has zero curvature, where as a circle has a constant curvature. The path's radius at the given offset is the reciprocal value of its curvature.
          * @param offset - the offset on the path, where 0 is at the beginning of the path and path.length at the end.
-         * @param isParameter [optional=false] - 
+         * @param isParameter [optional=false] -
          * @param point - the point for which we search the nearest location
          */
-        getCurvatureAt(offset: number, isParameter?: boolean, point?: paper.Point): number;
+        getCurvatureAt(offset: number, isParameter?: boolean, point?: Point): number;
 
         /**
          * Returns the nearest point on the path to the specified point.
@@ -2711,9 +2716,9 @@ declare module paper {
          */
         next: Segment;
 
-        /** 
+        /**
          * The previous segment in the path.segments array that the segment belongs to. If the segments belongs to a closed path, the last segment is returned for the first segment of the path.
-         * Read Only. 
+         * Read Only.
          */
         previous: Segment;
 
@@ -2745,7 +2750,7 @@ declare module paper {
 
         /**
          * Transform the segment by the specified matrix.
-         * @param matrix - the matrix to transform the segment by 
+         * @param matrix - the matrix to transform the segment by
          */
         transform(matrix: Matrix): void;
 
@@ -2758,7 +2763,7 @@ declare module paper {
 
         /**
          * Creates a new curve object.
-         * @param segment1 - 
+         * @param segment1 -
          * @param segment2 -
          */
         constructor(segment1: Segment, segment2: Segment);
@@ -2839,7 +2844,7 @@ declare module paper {
          */
         length: number;
 
-        /** 
+        /**
          * The bounding rectangle of the curve excluding stroke width.
          */
         bounds: Rectangle;
@@ -2915,7 +2920,7 @@ declare module paper {
         /**
          * Calculates the curve location at the specified offset or curve time parameter.
          * @param offset - the offset on the curve, or the curve time parameter if isParameter is true
-         * @param isParameter [optional] - pass true if offset is a curve time parameter.  default: false 
+         * @param isParameter [optional] - pass true if offset is a curve time parameter.  default: false
          */
         getLocationAt(offset: Point, isParameter?: boolean): CurveLocation;
 
@@ -2992,7 +2997,7 @@ declare module paper {
          */
         intersection: CurveLocation;
 
-        /** 
+        /**
          * The path this curve belongs to, if any.
          * Read Only
          */
@@ -3034,7 +3039,7 @@ declare module paper {
          */
         distance: number;
 
-        /** 
+        /**
          * Checks whether tow CurveLocation objects are describing the same location on a path, by applying the same tolerances as elsewhere when dealing with curve time parameters.
          * @param location CurveLocation
          */
@@ -3098,7 +3103,7 @@ declare module paper {
          */
         activate(): void;
 
-        /** 
+        /**
          * Clears the project by removing all project.layers and project.symbols.
          */
         clear(): void;
@@ -3141,7 +3146,7 @@ declare module paper {
          * @param options.selected - only hit selected items.
          */
         hitTest(point: Point, options?: { tolerance?: number; class?: string; fill?: boolean; stroke?: boolean; segments?: boolean; curves?: boolean; handles?: boolean; ends?: boolean; bounds?: boolean; center?: boolean; guides?: boolean; selected?: boolean; }): HitResult;
-        
+
         /**
          * Fetch items contained within the project whose properties match the criteria in the specified object.
          * Extended matching is possible by providing a compare function or regular expression. Matching points, colors only work as a comparison of the full object, not partial matching (e.g. only providing the x- coordinate to match all points with that x-value). Partial matching does work for item.data.
@@ -3293,7 +3298,7 @@ declare module paper {
          */
         shadowBlur: number;
 
-        /** 
+        /**
          * The shadow's offset.
          */
         shadowOffset: Point;
@@ -3408,7 +3413,7 @@ declare module paper {
          */
         constructor(gray: number, alpha?: number);
 
-        /** 
+        /**
          * Creates a HSB, HSL or gradient Color object from the properties of the provided object:
          * @param object - an object describing the components and properties of the color.
          */
@@ -3416,7 +3421,7 @@ declare module paper {
 
         /**
          * Creates a gradient Color object.
-         * @param gradient - 
+         * @param gradient -
          * @param origin -
          * @param destination -
          * @param highlight [optional] -
@@ -3655,12 +3660,12 @@ declare module paper {
          */
         remove(): void;
 
-        /** 
+        /**
          * Checks whether the view is currently visible within the current browser viewport.
          */
         isVisible(): boolean;
 
-        /** 
+        /**
          * Scrolls the view by the given vector.
          * @param point - the vector to scroll by
          */
@@ -3683,7 +3688,7 @@ declare module paper {
 
         /**
          *
-         * @param point - 
+         * @param point -
          */
         projectToView(point: Point): Point;
 
@@ -3694,6 +3699,8 @@ declare module paper {
         viewToProject(point: Point): Point;
 
         //I cannot use function: Function as it is a reserved keyword
+
+        draw(): void;
 
         /**
          * Attach an event handler to the view.
@@ -3751,7 +3758,7 @@ declare module paper {
         maxDistance: number;
 
         /**
-         * 
+         *
          */
         fixedDistance: number;
 
@@ -3765,7 +3772,7 @@ declare module paper {
          */
         onMouseDrag: (event: ToolEvent) => void;
 
-        /** 
+        /**
          * The function to be called the mouse moves within the project view. The function receives a ToolEvent object which contains information about the mouse event.
          */
         onMouseMove: (event: ToolEvent) => void;
@@ -3880,7 +3887,7 @@ declare module paper {
          */
         middlePoint: Point;
 
-        /** 
+        /**
          * The difference between the current position and the last position of the mouse when the event was fired. In case of the mouseup event, the difference to the mousedown position is returned.
          */
         delta: Point;
